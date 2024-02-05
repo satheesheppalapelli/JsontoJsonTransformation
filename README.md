@@ -4,7 +4,7 @@
 
 # Why Jolt?
 
-JSON is a language independent data format, commonly used for client-server communication especially when it comes to web-services, configuration-files, other data-descriptors, etc. The incoming JSON data simply needs to be formatted or re-labeled for use in another system or repository, such as Hive, HBase, MongoDB or Elasticsearch.
+JSON is a language independent data format, commonly used for client-server communication especially when it comes to web-services, configuration-files, other data-descriptors, etc. The incoming JSON data simply needs to be formatted or re-labeled for use in another system or repository, such as Hive, HBase, MongoDB, Elasticsearch and Apache Kafka.
 
 Before Jolt, input JSON had to go through various conversions before getting the JSON output.
 
@@ -102,3 +102,9 @@ Example using Shift operation:
     },
     "address": "123 Main St CA"
     }
+
+#### **Resources**
+
+JSON to JSON transformation library written in Java. [https://github.com/bazaarvoice/jolt](https://jolt-demo.appspot.com/#inception)
+
+Jolt Transform Demo [https://jolt-demo.appspot.com/#inception](https://jolt-demo.appspot.com/#inception)
