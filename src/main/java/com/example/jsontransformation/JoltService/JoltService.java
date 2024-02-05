@@ -11,15 +11,16 @@ import java.nio.charset.StandardCharsets;
 import java.util.List;
 @Configuration
 public class JoltService {
-
-//    @Value("${jolt.specification}")
-//    private String joltSpecification;
     private Chainr chainr;
 
-    public JoltService() throws IOException {
+/*    public JoltService() throws IOException {
         URL joltSpecUrl = getClass().getResource("/jolt-spec.json");
         List<Object> specList = JsonUtils.jsonToList(joltSpecUrl.openStream());
-//        List<Object> specList = JsonUtils.jsonToList(joltSpecification);
+        chainr = Chainr.fromSpec(specList);
+    }*/
+
+    public JoltService(@Value("${jolt.specification}") String joltSpecification) throws IOException {
+        List<Object> specList = JsonUtils.jsonToList(joltSpecification);
         chainr = Chainr.fromSpec(specList);
     }
 
@@ -29,4 +30,3 @@ public class JoltService {
         return JsonUtils.toJsonString(transformedOutput);
     }
 }
-

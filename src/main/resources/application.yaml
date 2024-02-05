@@ -1,5 +1,5 @@
 jolt:
-  specification:
+  specification: |
     [
       {
         "operation": "shift",
@@ -13,9 +13,9 @@ jolt:
             "employeeDetails": {
               "name": "employee.name",
               "designation": "employee.designation",
-              "phone": "contact.phone",
-              "home": "contact.home",
-              "address": "contact.address"
+              "phone": "employee.contact.phone",
+              "home": "employee.contact.home",
+              "address": "employee.contact.address"
             }
           }
         }
@@ -34,4 +34,3 @@ jolt:
         }
       }
     ]
-

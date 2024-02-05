@@ -1,6 +1,7 @@
 package com.example.jsontransformation.TransformController;
 
 import com.example.jsontransformation.JoltService.JoltService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -9,7 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class TransformController {
 
-    private final JoltService joltService;
+    @Autowired
+    private JoltService joltService;
 
     public TransformController(JoltService joltService) {
         this.joltService = joltService;
