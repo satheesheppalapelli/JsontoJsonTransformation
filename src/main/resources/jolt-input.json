@@ -1,0 +1,16 @@
+{
+  "client": {
+    "name": "Acme Corp.",
+    "address": {
+      "street": "123 Main St",
+      "state": "CA"
+    },
+    "employeeDetails": {
+      "name": "John Doe",
+      "designation": "Manager",
+      "phone": "555-1234",
+      "home": "555-5678",
+      "address": "456 Elm St"
+    }
+  }
+}

@@ -1,0 +1,37 @@
+jolt:
+  specification:
+    [
+      {
+        "operation": "shift",
+        "spec": {
+          "client": {
+            "name": "companyName",
+            "address": {
+              "street": "clientStreetAddress",
+              "state": "clientAddressState"
+            },
+            "employeeDetails": {
+              "name": "employee.name",
+              "designation": "employee.designation",
+              "phone": "contact.phone",
+              "home": "contact.home",
+              "address": "contact.address"
+            }
+          }
+        }
+      },
+      {
+        "operation": "modify-overwrite-beta",
+        "spec": {
+          "address": "=concat(@(1,clientStreetAddress),' ',@(1,clientAddressState))"
+        }
+      },
+      {
+        "operation": "remove",
+        "spec": {
+          "clientStreetAddress": "",
+          "clientAddressState": ""
+        }
+      }
+    ]
+
