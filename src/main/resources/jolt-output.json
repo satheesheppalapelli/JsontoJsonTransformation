@@ -2,12 +2,12 @@
   "companyName": "Acme Corp.",
   "employee": {
     "name": "John Doe",
-    "designation": "Manager"
-  },
-  "contact": {
-    "phone": "555-1234",
-    "home": "555-5678",
-    "address": "456 Elm St"
+    "designation": "Manager",
+    "contact": {
+      "phone": "555-1234",
+      "home": "555-5678",
+      "address": "456 Elm St"
+    }
   },
   "address": "123 Main St CA"
 }
