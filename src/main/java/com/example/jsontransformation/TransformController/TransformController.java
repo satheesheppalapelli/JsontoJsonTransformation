@@ -1,6 +1,9 @@
 package com.example.jsontransformation.TransformController;
 
+import com.example.jsontransformation.Entity.TransformedData;
+import com.example.jsontransformation.Entity.TransformedDataRepository;
 import com.example.jsontransformation.JoltService.JoltService;
+import com.example.jsontransformation.JoltService.TransformedDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +17,9 @@ public class TransformController {
     @Autowired
     private JoltService joltService;
 
+    @Autowired
+    private TransformedDataService transformedDataService;
+
     public TransformController(JoltService joltService) {
         this.joltService = joltService;
     }
@@ -26,7 +32,8 @@ public class TransformController {
                         .body("JoltService is not properly initialized.");
             }
             String transformedJson = joltService.transform(jsonInput);
-            return ResponseEntity.ok(transformedJson);
+            transformedDataService.saveTransformedData(transformedJson);
+            return ResponseEntity.ok().build();
         } catch (Exception e) {
             return ResponseEntity.status(500).body("Error during transformation");
         }

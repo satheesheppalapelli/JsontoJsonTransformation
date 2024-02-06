@@ -12,7 +12,7 @@ import java.util.List;
 
 @Configuration
 public class JoltService {
-    private Chainr chainr;
+    private final Chainr chainr;
 
 /*    public JoltService() throws IOException {
         URL joltSpecUrl = getClass().getResource("/jolt-spec.json");
@@ -26,8 +26,8 @@ public class JoltService {
     }
 
     public String transform(String inputJson) {
-        Object inputTree = JsonUtils.jsonToObject(inputJson);
-        Object transformedOutput = chainr.transform(inputTree);
+        Object inputObject = JsonUtils.jsonToObject(inputJson);
+        Object transformedOutput = chainr.transform(inputObject);
         return JsonUtils.toJsonString(transformedOutput);
     }
 }
