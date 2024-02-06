@@ -1,5 +1,3 @@
-DROP TABLE transformed_data;
-
 CREATE TABLE transformed_data
 (
    id integer not null,
@@ -8,3 +6,5 @@ CREATE TABLE transformed_data
 );
 
 SELECT * FROM transformed_data;
+
+DROP TABLE transformed_data;

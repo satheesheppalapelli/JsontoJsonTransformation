@@ -1,20 +1,22 @@
 package com.example.jsontransformation;
-
+import com.example.jsontransformation.Entity.TransformedData;
+import com.example.jsontransformation.Entity.TransformedDataRepository;
 import com.example.jsontransformation.JoltService.JoltService;
+import com.example.jsontransformation.JoltService.TransformedDataService;
 import com.example.jsontransformation.TransformController.TransformController;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
+import org.mockito.MockitoAnnotations;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
-@ExtendWith(MockitoExtension.class)
-class CustomJsonTransformationApplicationTests {
+
+class TransformControllerTest {
 
 	@InjectMocks
 	private TransformController transformController;
@@ -22,25 +24,30 @@ class CustomJsonTransformationApplicationTests {
 	@Mock
 	private JoltService joltService;
 
+	@Mock
+	private TransformedDataService transformedDataService;
+
+	@Mock
+	private TransformedDataRepository transformedDataRepository;
+
 	@BeforeEach
 	public void setUp() {
-		// Initialize the TransformController with the mocked JoltService
-		transformController = new TransformController(joltService);
+		MockitoAnnotations.openMocks(this);
 	}
 
 	@Test
 	public void testTransformJsonSuccess() throws Exception {
 		// Given
 		String inputJson = "{\"foo\":\"value\"}";
-		String expectedJson = "{\"bar\":\"value\"}";
-		when(joltService.transform(inputJson)).thenReturn(expectedJson);
+		String transformedJson = "{\"bar\":\"value\"}";
+		when(joltService.transform(inputJson)).thenReturn(transformedJson);
 
 		// When
 		ResponseEntity<String> response = transformController.transformJson(inputJson);
 
 		// Then
 		assertEquals(HttpStatus.OK, response.getStatusCode());
-		assertEquals(expectedJson, response.getBody());
+		verify(transformedDataService).saveTransformedData(transformedJson);
 	}
 
 	@Test

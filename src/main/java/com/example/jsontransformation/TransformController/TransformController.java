@@ -20,8 +20,9 @@ public class TransformController {
     @Autowired
     private TransformedDataService transformedDataService;
 
-    public TransformController(JoltService joltService) {
+    public TransformController(JoltService joltService, TransformedDataService transformedDataService) {
         this.joltService = joltService;
+        this.transformedDataService = transformedDataService;
     }
 
     @PostMapping("/transform")
@@ -33,7 +34,8 @@ public class TransformController {
             }
             String transformedJson = joltService.transform(jsonInput);
             transformedDataService.saveTransformedData(transformedJson);
-            return ResponseEntity.ok().build();
+//            return ResponseEntity.ok().build();
+            return ResponseEntity.status(HttpStatus.OK).body("Successfully Stored in Database");
         } catch (Exception e) {
             return ResponseEntity.status(500).body("Error during transformation");
         }
