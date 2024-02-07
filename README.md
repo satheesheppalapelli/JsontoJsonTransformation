@@ -141,7 +141,9 @@ Example curl command:
 
 http://localhost:8080/transform
 
-**Input Json:** `{
+**Input Json:** 
+
+`{
 "client": {
 "name": "Acme Corp.",
 "address": {
@@ -156,9 +158,12 @@ http://localhost:8080/transform
 "address": "456 Elm St"
 }
 }
-} `with your actual JSON input payload.
+} `
+
+with your actual JSON input payload.
 
 **Jolt Spec:**
+
 `[
 {
 "operation": "shift",
@@ -195,6 +200,7 @@ http://localhost:8080/transform
 ]`
 
 **Transformation Json output:**
+
 `{
 "companyName": "Acme Corp.",
 "employee": {
