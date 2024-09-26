@@ -2,11 +2,12 @@ package com.example.jsontransformation.Entity;
 
 import jakarta.persistence.*;
 import org.antlr.v4.runtime.misc.NotNull;
-import org.hibernate.annotations.GenericGenerator;
+
+import java.io.Serializable;
 
 @Entity
-@Table(name = "transformed_data")
-public class TransformedData {
+@Table(name = "transformed_json")
+public class TransformedData implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -16,6 +17,7 @@ public class TransformedData {
     @NotNull
     @Column(name = "transformed_json")
     private String transformedJson;
+
 
     public Long getId() {
         return id;
@@ -32,7 +34,5 @@ public class TransformedData {
     public void setTransformedJson(String transformedJson) {
         this.transformedJson = transformedJson;
     }
-
-    // Getters and setters
 }
 
