@@ -1,6 +1,4 @@
 package com.example.jsontransformation;
-import static org.mockito.Mockito.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 import com.example.jsontransformation.Aspects.LoggingAspect;
 import nl.altindag.log.LogCaptor;
@@ -11,6 +9,9 @@ import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class LoggingAspectTest {
@@ -43,7 +44,7 @@ class LoggingAspectTest {
         ProceedingJoinPoint joinPoint = mockProceedingJoinPoint(inputJson, transformedJson);
 
         // When
-        Object result = loggingAspect.logAround(joinPoint);
+        Object result = loggingAspect.logMethodExecution(joinPoint);
 
         // Assert the method's result
         assertEquals(transformedJson, result);
@@ -61,6 +62,30 @@ class LoggingAspectTest {
                 "Expected 'after' log message not found.");
     }
 
+    @Test
+    void testLogExecutionTime() throws Throwable {
+        // Given
+        String inputJson = "{\"foo\":\"value\"}";
+        String transformedJson = "{\"bar\":\"value\"}";
+
+        // Mocking the ProceedingJoinPoint
+        ProceedingJoinPoint joinPoint = mockProceedingJoinPoint(inputJson, transformedJson);
+
+        // When
+        Object result = loggingAspect.logMethodExecution(joinPoint);
+
+        // Assert the method's result
+        assertEquals(transformedJson, result);
+
+        // Print logs to verify
+        logCaptor.getInfoLogs().forEach(System.out::println); // Debugging line
+
+        // Then: Verify that the execution time log is captured
+        assertTrue(logCaptor.getInfoLogs().stream()
+                        .anyMatch(log -> log.contains("Execution Time: transformJson:: executed in")),
+                "Expected execution time log message not found.");
+    }
+
     private ProceedingJoinPoint mockProceedingJoinPoint(String input, String output) throws Throwable {
         ProceedingJoinPoint joinPoint = mock(ProceedingJoinPoint.class);
         Signature signature = mock(Signature.class);
@@ -74,30 +99,6 @@ class LoggingAspectTest {
         when(joinPoint.proceed()).thenReturn(output);
 
         return joinPoint;
-    }
-
-    @Test
-    void testLogExecutionTime() throws Throwable {
-        // Given
-        String inputJson = "{\"foo\":\"value\"}";
-        String transformedJson = "{\"bar\":\"value\"}";
-
-        // Mocking the ProceedingJoinPoint
-        ProceedingJoinPoint joinPoint = mockProceedingJoinPoint(inputJson, transformedJson);
-
-        // When
-        Object result = loggingAspect.logExecutionTime(joinPoint);
-
-        // Assert the method's result
-        assertEquals(transformedJson, result);
-
-        // Print logs to verify
-        logCaptor.getInfoLogs().forEach(System.out::println); // Debugging line
-
-        // Then: Verify that the execution time log is captured
-        assertTrue(logCaptor.getInfoLogs().stream()
-                        .anyMatch(log -> log.contains("Execution Time: transformJson:: executed in")),
-                "Expected execution time log message not found.");
     }
 
 }

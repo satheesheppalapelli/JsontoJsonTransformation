@@ -18,7 +18,6 @@ public class TransformedData implements Serializable {
     @Column(name = "transformed_json")
     private String transformedJson;
 
-
     public Long getId() {
         return id;
     }

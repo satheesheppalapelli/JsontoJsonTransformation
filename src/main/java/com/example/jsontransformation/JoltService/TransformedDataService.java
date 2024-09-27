@@ -12,8 +12,6 @@ public class TransformedDataService {
 
     private final TransformedDataRepository transformedDataRepository;
 
-//    private final RedisTemplate<String, String> redisTemplate;
-
     @Autowired
     public TransformedDataService(TransformedDataRepository transformedDataRepository) {
         this.transformedDataRepository = transformedDataRepository;
