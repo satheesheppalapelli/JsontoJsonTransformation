@@ -30,6 +30,9 @@ public class TransformController {
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("JoltService is not properly initialized.");
             }
             String transformedJson = joltService.transform(jsonInput);
+            if (transformedJson == null) {
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Transformation resulted in null.");
+            }
             transformedDataService.saveTransformedData(transformedJson);
             return ResponseEntity.status(HttpStatus.OK).body("Successfully Stored the Transformed Event into Database: " + transformedJson);
         } catch (Exception e) {

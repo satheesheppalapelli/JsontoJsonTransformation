@@ -17,7 +17,6 @@ public class TransformedDataService {
         this.transformedDataRepository = transformedDataRepository;
     }
 
-    @Cacheable(value = "transformed_json")
     public TransformedData saveTransformedData(Object transformedJson) {
         TransformedData transformedData = new TransformedData();
         transformedData.setTransformedJson(transformedJson != null ? transformedJson.toString() : null);
