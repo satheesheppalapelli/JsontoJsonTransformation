@@ -1,8 +1,8 @@
 package com.example.jsontransformation;
 
-import com.example.jsontransformation.Entity.TransformedDataRepository;
-import com.example.jsontransformation.JoltService.JoltService;
-import com.example.jsontransformation.JoltService.TransformedDataService;
+import com.example.jsontransformation.Repository.TransformedDataRepository;
+import com.example.jsontransformation.Service.JoltService;
+import com.example.jsontransformation.Service.TransformedDataService;
 import com.example.jsontransformation.TransformController.TransformController;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

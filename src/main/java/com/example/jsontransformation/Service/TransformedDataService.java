@@ -1,10 +1,8 @@
-package com.example.jsontransformation.JoltService;
+package com.example.jsontransformation.Service;
 
 import com.example.jsontransformation.Entity.TransformedData;
-import com.example.jsontransformation.Entity.TransformedDataRepository;
+import com.example.jsontransformation.Repository.TransformedDataRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.Cacheable;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 @Service

@@ -1,4 +1,5 @@
 DROP TABLE IF EXISTS transformed_data;
+DROP TABLE IF EXISTS "`user`";
 
 CREATE TABLE IF NOT EXISTS transformed_data
 (

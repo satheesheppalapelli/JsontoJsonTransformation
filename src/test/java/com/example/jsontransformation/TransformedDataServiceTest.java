@@ -1,9 +1,9 @@
 package com.example.jsontransformation;
 
 import com.example.jsontransformation.Entity.TransformedData;
-import com.example.jsontransformation.Entity.TransformedDataRepository;
-import com.example.jsontransformation.JoltService.JoltService;
-import com.example.jsontransformation.JoltService.TransformedDataService;
+import com.example.jsontransformation.Repository.TransformedDataRepository;
+import com.example.jsontransformation.Service.JoltService;
+import com.example.jsontransformation.Service.TransformedDataService;
 import com.example.jsontransformation.TransformController.TransformController;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -12,13 +12,11 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.*;
 
 
 @SpringBootTest
@@ -40,6 +38,7 @@ public class TransformedDataServiceTest {
     private TransformedDataService MakeTransformedDataServiceWithMockRepository(TransformedDataRepository mockRepository) {
         return new TransformedDataService(mockRepository);
     }
+
     // save valid transformed JSON data
     @Test
     public void test_save_valid_transformed_json_data() {
@@ -58,6 +57,7 @@ public class TransformedDataServiceTest {
         Assertions.assertEquals(validJson, result.getTransformedJson());
         Mockito.verify(mockRepository, Mockito.times(1)).save(Mockito.any(TransformedData.class));
     }
+
     // save empty string as transformed JSON data
     @Test
     public void test_save_empty_string_as_transformed_json_data() {

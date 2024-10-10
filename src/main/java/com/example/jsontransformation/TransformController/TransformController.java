@@ -1,9 +1,9 @@
 package com.example.jsontransformation.TransformController;
 
 import com.example.jsontransformation.Entity.TransformedData;
-import com.example.jsontransformation.Entity.TransformedDataRepository;
-import com.example.jsontransformation.JoltService.JoltService;
-import com.example.jsontransformation.JoltService.TransformedDataService;
+import com.example.jsontransformation.Repository.TransformedDataRepository;
+import com.example.jsontransformation.Service.JoltService;
+import com.example.jsontransformation.Service.TransformedDataService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -40,12 +40,12 @@ public class TransformController {
         }
     }
 
-    @GetMapping("/transformed_json")
+    @GetMapping("/transformedJson")
     public Iterable<TransformedData> getAllTransformedData() {
         return transformedDataRepository.findAll();
     }
 
-    @GetMapping("/transformed_json/{id}")
+    @GetMapping("/transformedJson/{id}")
     public ResponseEntity<TransformedData> getTransformedDataById(@PathVariable Long id) {
         Optional<TransformedData> optionalTransformedData = transformedDataRepository.findById(id);
         return optionalTransformedData.map(data -> ResponseEntity.ok().body(data))

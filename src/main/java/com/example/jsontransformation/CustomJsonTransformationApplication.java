@@ -8,8 +8,8 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 @SpringBootApplication
 public class CustomJsonTransformationApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(CustomJsonTransformationApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(CustomJsonTransformationApplication.class, args);
+    }
 
 }
