@@ -1,0 +1,10 @@
+type Query {
+    getAllTransformedData: [TransformedData]
+    getTransformedDataById(id: ID!): TransformedData
+}
+
+type TransformedData {
+    id: ID
+    transformedJson: String
+}
+
